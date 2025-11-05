@@ -22,7 +22,9 @@ jobs:
         with:
           go-version: 1.25
       - name: Create dist
-        run: mkdir -p internal/api/dist
+        run: |
+          mkdir -p internal/api/dist
+          echo '<h1>Parse-DMARC API</h1>' > internal/api/dist/index.html
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v8
         with:
