@@ -7,11 +7,12 @@ install-deps:
     @echo "Installing Go dependencies..."
     go mod tidy
     @echo "Installing Node.js dependencies..."
-    cd frontend && bun install
+    bun install
 
 frontend:
     @echo "Building frontend..."
-    cd frontend && bun run build
+    bun run build
+    cp -a dist internal/api/
 
 backend: frontend
     @echo "Building Go binary (pure Go, no CGO)..."
@@ -38,7 +39,7 @@ clean:
     @echo "Cleaning build artifacts..."
     rm -rf bin/
     rm -rf internal/api/dist/
-    rm -rf frontend/node_modules/
+    rm -rf node_modules/
     rm -f config.json
 
 test:
@@ -49,4 +50,4 @@ install: build
     sudo cp bin/parse-dmarc /usr/local/bin/
 
 frontend-dev:
-    cd frontend && bun run dev
+    bun run dev

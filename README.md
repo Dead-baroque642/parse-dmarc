@@ -41,12 +41,14 @@ Value: v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com
 ```
 
 **What this means:**
+
 - `p=none` - Monitor only (don't block emails yet)
 - `rua=mailto:dmarc@yourdomain.com` - Send aggregate reports to this email address
 
 **Important:** Replace `dmarc@yourdomain.com` with an actual email inbox you control. This is where Gmail, Outlook, Yahoo, etc. will send your DMARC reports.
 
 **DNS Examples:**
+
 - **Cloudflare:** DNS > Add record > Type: TXT, Name: `_dmarc`, Content: `v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com`
 - **Google Domains:** DNS > Custom records > TXT, Name: `_dmarc`, Data: `v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com`
 - **AWS Route53:** Create record > Type: TXT, Name: `_dmarc.yourdomain.com`, Value: `"v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com"`
@@ -106,6 +108,7 @@ Once DMARC reports start arriving and Parse DMARC processes them, your dashboard
 - **Policy actions** (how receiving servers handled your email)
 
 This helps you:
+
 - Verify your legitimate email services are properly configured
 - Detect unauthorized use of your domain
 - Gradually move from monitoring (`p=none`) to enforcement (`p=quarantine` or `p=reject`)
@@ -115,6 +118,7 @@ This helps you:
 ### IMAP Settings for Common Providers
 
 **Gmail:**
+
 ```json
 {
   "host": "imap.gmail.com",
@@ -124,9 +128,11 @@ This helps you:
   "use_tls": true
 }
 ```
+
 Requires [App Password](https://support.google.com/accounts/answer/185833)
 
 **Outlook/Office 365:**
+
 ```json
 {
   "host": "outlook.office365.com",
@@ -158,6 +164,7 @@ docker exec parse-dmarc ./parse-dmarc -fetch-interval=600
 **Q: I'm not receiving any reports. What's wrong?**
 
 A: Check these things in order:
+
 1. Did you add the `_dmarc` TXT record to your DNS? (Use a DNS checker like `dig _dmarc.yourdomain.com TXT`)
 2. Wait 24-48 hours - reports aren't instant
 3. Is your domain sending/receiving email? No email = no reports

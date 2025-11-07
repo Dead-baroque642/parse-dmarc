@@ -29,7 +29,9 @@
           <div class="star-banner-text">
             <span class="star-banner-icon">⭐</span>
             <span class="star-banner-message">
-              <strong>Self-hosting Parse DMARC?</strong> Support open-source email security! Give us a star on GitHub and help others discover this tool.
+              <strong>Self-hosting Parse DMARC?</strong> Support open-source
+              email security! Give us a star on GitHub and help others discover
+              this tool.
             </span>
           </div>
           <div class="star-banner-actions">
@@ -530,7 +532,10 @@ export default {
         dismissed: true,
         timestamp: Date.now(),
       };
-      localStorage.setItem("starBannerDismissed", JSON.stringify(dismissalData));
+      localStorage.setItem(
+        "starBannerDismissed",
+        JSON.stringify(dismissalData),
+      );
     }
 
     function checkStarBannerDismissal() {

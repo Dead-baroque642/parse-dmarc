@@ -3,12 +3,13 @@ FROM oven/bun:1 AS frontend-builder
 
 WORKDIR /build/frontend
 
-RUN --mount=type=bind,source=frontend/package.json,target=package.json \
-    --mount=type=bind,source=frontend/bun.lock,target=bun.lock \
+RUN --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=bun.lock,target=bun.lock \
     --mount=type=cache,target=/root/.bun/install/cache \
     bun install --frozen-lockfile
 
-COPY frontend/ ./
+COPY bun.lock index.html package*.json vite.config.js ./
+COPY ./src ./src
 RUN bun run build
 
 FROM golang:1.25 AS mod

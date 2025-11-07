@@ -8,7 +8,4 @@ services:
     user: "1000:1000"
     volumes:
       - ./config.json:/app/config.json
-      - parse-dmarc-data:/data
-
-volumes:
-  parse-dmarc-data:
+      - ./data:/data
